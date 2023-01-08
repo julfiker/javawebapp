@@ -27,6 +27,4 @@ public class ApplicationController {
         model.addAttribute("applications", applicationList);
         return "applications";
     }
-
-
 }

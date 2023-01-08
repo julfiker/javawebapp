@@ -8,8 +8,9 @@ import com.julfiker.admin.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,7 +40,9 @@ public class UserManagerImpl implements UserManager {
         if(role == null){
             role = checkRoleExist();
         }
-        user.setRoles(Arrays.asList(role));
+        Set<Role> userRoles = new HashSet<>();
+        userRoles.add(role);
+        user.setRoles(userRoles);
         userRepository.save(user);
     }
 
