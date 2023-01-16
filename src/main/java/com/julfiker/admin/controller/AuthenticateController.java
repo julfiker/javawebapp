@@ -22,14 +22,9 @@ public class AuthenticateController {
     @Autowired
     private UserManager userManager;
 
-    @GetMapping("/admin/index")
-    public String home(){
-        return "admin/index";
-    }
-
     @RequestMapping("/login")
     public String login() {
-        return "login/login";
+        return "auth/login";
     }
 
     // handler method to handle user registration form request
@@ -38,7 +33,7 @@ public class AuthenticateController {
         // create model object to store form data
         UserDto user = new UserDto();
         model.addAttribute("user", user);
-        return "register";
+        return "auth/register";
     }
 
     // handler method to handle user registration form submit request
@@ -56,7 +51,7 @@ public class AuthenticateController {
 
         if(result.hasErrors()){
             model.addAttribute("user", userDto);
-            return "register";
+            return "auth/register";
         }
 
         userManager.saveUser(userDto);
